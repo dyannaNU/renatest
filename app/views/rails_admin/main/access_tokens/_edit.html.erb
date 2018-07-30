@@ -1,0 +1,5 @@
+<% if form.object.new_record? %>
+  <%= text_field_tag :access_token_token, "#{ ('a'..'z').to_a.shuffle[0, 8].join }", name: "access_token[token]", required: "required", size: "50", class: "form-control" %>
+<% else %>
+  <%= text_field_tag :access_token_token, form.object.token, name: "access_token[token]", required: "required", size: "50", class: "form-control" %>
+<% end %>

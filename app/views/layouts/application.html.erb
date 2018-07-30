@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>EMC&sup2</title>
+
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded mb-3 hidden-print">
+      <button class="navbar-toggler navbar-toggler-right" type="button"
+              data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <%= link_to "EMC&sup2".html_safe, root_path, class: "navbar-brand" %>
+
+      <% if current_participant %>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_participant_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </nav>
+
+    <div class="container">
+      <span id="flash">
+        <%= render "/shared/flash", locals: { notice: notice, alert: alert } %>
+      </span>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

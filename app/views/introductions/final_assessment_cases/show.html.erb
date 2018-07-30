@@ -1,0 +1,20 @@
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Welcome</h4>
+  <p class="mb-0">You are about to complete the final assessment!</p>
+</div>
+
+<ul>
+  <li>You will interpret 20 esophageal HRM cases using your locally installed ManoView software.</li>
+  <li>Remember:
+    <ul>
+      <li>In order to open the case, open the file within the ManoView software.</li>
+      <li>Hide the impedance signal when present by clicking on "show Z".</li>
+      <li>For the questions regarding hiatal hernia and integrated relaxation pressure, you should select “unable to determine” if the catheter does not traverse the esophagogastric junction.</li>
+      <li>Distal latency and peristaltic integrity cannot be determined in the context of a distal contractile integral < 450 mmHg·s·cm.</li>
+      <li>For esophageal motility diagnosis, if the catheter does not traverse the esophagogastric junction the correct answer choice should be “Technically Limited”.</li>
+    </ul> 
+  </li>
+  <li>You must complete a case in order to save your performance. You can take breaks between cases if you click on the “save and exit” button. Otherwise, you can proceed to the next case by clicking on the “save and next” button.</li>
+</ul>
+
+<%= button_to "Begin Final Assessment", introduction_path(type: FinalAssessmentCase), method: :patch, class: "btn btn-secondary" %>

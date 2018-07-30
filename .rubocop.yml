@@ -1,0 +1,49 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - db/**/*
+    - vendor/**/*
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+
+Rails:
+  Enabled: true
+
+AbcSize:
+  Exclude:
+    - spec/**/*
+
+Documentation:
+  Exclude:
+    - spec/**/*
+
+DynamicFindBy:
+  Exclude:
+    - lib/tasks/default.rake
+
+LineLength:
+  Exclude:
+    - Gemfile
+    - Rakefile
+    - spec/*_helper.rb
+
+ModuleLength:
+  Exclude:
+    - spec/**/*
+
+MethodLength:
+  Exclude:
+    - spec/**/*
+
+BlockLength:
+  Exclude:
+    - spec/**/*
+
+OrderedGems:
+  Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes

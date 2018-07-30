@@ -1,0 +1,25 @@
+<%= link_to "Account", edit_participant_registration_path, class: "float-right" %>
+
+<h1>Welcome</h1>
+
+<% if @presenter.final_report_card_link %>
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Congratulations! You have completed EMC<sup>2</sup>!</h4>
+    <p class="mb-0">You may view your final report card below.</p>
+    </div> 
+<% end %>
+
+<p class="lead">
+  Please choose from the menu. Tasks should be completed from top to bottom. After you complete a task, your next activity will appear at the bottom of the menu, possibly replacing the last completed task. 
+</p>
+
+<div class="list-group">
+  <%= @presenter.how_to_link %>
+  <%= @presenter.baseline_feedback_link %>
+  <%= @presenter.baseline_assessment_link %>
+  <%= @presenter.baseline_report_link %>
+  <%= @presenter.modules_link %>
+  <%= @presenter.final_assessment_link %>
+  <%= @presenter.final_feedback_questionnaire_link %>
+  <%= @presenter.final_report_card_link %>
+</div>

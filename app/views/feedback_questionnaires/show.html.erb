@@ -1,0 +1,26 @@
+<h1>Feedback Questionnaire</h1>
+
+<% if @feedback_type == "FinalFeedbackQuestion" %>
+    <div class="alert alert-success" role="alert">
+    <p class="mb-0">Your feedback helps us improve our program for future participants.</p>
+    </div> 
+<% end %>
+
+<%= form_tag feedback_question_responses_path(feedback_type: @feedback_type) do %>
+  <% @feedback_question_responses.each_with_index do |response, index| %>
+    <%= fields_for "feedback_question_responses[#{index}]", response do |response_fields| %>
+      <%= response_fields.hidden_field :feedback_question_id,
+                                       value: response.feedback_question.id %>
+
+      <div class="form-group">
+        <%= response_fields.label :response_choice, response.feedback_question.description %>
+        <%= response_fields.collection_select :response_choice,
+                                              response.feedback_question.response_options,
+                                              :to_s, :to_s, { include_blank: true },
+                                              class: "form-control" %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <%= submit_tag "Save & Next", class: "btn btn-primary" %>
+<% end %>

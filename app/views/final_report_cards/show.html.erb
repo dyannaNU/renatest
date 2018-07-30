@@ -1,0 +1,6 @@
+<h1>Report Card</h1>
+
+<%= link_to "Download Report Card", { format: :pdf }, { class: "btn btn-primary hidden-print" } %>
+<%= link_to "Email Report Card", { action: :attach }, { class: "btn btn-primary hidden-print" } %>
+
+<%= render "combined_report_card" %>

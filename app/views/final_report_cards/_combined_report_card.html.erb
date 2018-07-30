@@ -1,0 +1,35 @@
+<h2>Assessment Scores</h1>
+
+<% skills = Skill.all %>
+<% training_statuses = TrainingStatus.all %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Skill</th>
+      <th>Your Baseline Score</th>
+      <th>Your Final Score</th>
+      <% training_statuses.each do |training_status| %>
+        <th><%= training_status.title.capitalize %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+   <% skills.each do |skill| %>
+      <% question = skill.assessment_question %>
+      <tr>
+        <td><%= skill.title %></td>
+        <td class="table-info"><%= @baseline_report_card.percent_correct(question) %>%</td>
+        <td class="table-info"><%= @final_report_card.percent_correct(question) %>%</td>
+        <% training_statuses.each do |training_status| %>
+          <td class="<%='table-info' if @current_participant.training_status_id == training_status.id %>" ><%= BenchmarkScore.find_by(
+            training_status: training_status,
+            skill: skill)&.percentage %>%
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Home", home_path, class: "btn btn-secondary" %>

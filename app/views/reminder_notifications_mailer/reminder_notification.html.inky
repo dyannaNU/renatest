@@ -1,0 +1,8 @@
+<container>
+Dear <%= @first_name %> <%= @last_name %>, 
+
+This message is to remind you to complete EMC<sup>2</sup>. You have 90 days to complete this program from the time of initial registration. You will no longer have access to the program following this time period. If you re-register, you will lose your saved performance. Your username is the email address you registered with. If you do not remember your password, please click on the forget your password link on the home page.
+
+<%=link_to "Link to EMC2", @url %>
+Thank you!
+</container>

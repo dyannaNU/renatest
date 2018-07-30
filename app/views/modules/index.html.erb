@@ -1,0 +1,26 @@
+<h1>Modules</h1>
+
+<%= link_to "Download Files Needed for Modules", download_zip_file_modules_path, class: "btn btn-primary", target: :_blank %>
+
+<p class="lead">
+  The highlighted modules are required. They must be completed before you can
+  take the final assessment.
+</p>
+
+<div class="list-group">
+  <% @presenter.stories.sort_by(&:title).each do |story| %>
+    <%= link_to story.skill.title,
+        "#{story.file_name}/story_html5.html",
+        class: "show-module list-group-item list-group-item-action #{'font-weight-bold' unless @presenter.completed?(story)}
+    #{'list-group-item-success' if @presenter.completed?(story)}
+    #{'list-group-item-danger' if @presenter.below_benchmark_score?(story, @report_card_presenter.percent_correct(story.assessment_question)) && !@presenter.completed?(story)}",
+        target: "_blank"
+    %>
+  <% end %>
+</div>
+
+<%= form_for @presenter.story_event do |f| %>
+<% end %>
+
+<br>
+<%= link_to "Home", home_path, class: "btn btn-secondary" %>

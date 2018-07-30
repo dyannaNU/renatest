@@ -1,0 +1,32 @@
+<h1><%= @presenter.pretty_title %></h1>
+
+<h2>Case <%= @case.position %></h2>
+
+<p><%= @case.description %></p>
+
+<%= link_to "Download Case Information", @case_file.asset.url, class: "btn btn-primary", target: :_blank if @case_file %>
+
+<hr />
+
+<%= form_tag update_responses_assessment_question_responses_path(assessment_type: @assessment_type), method: :put do %>
+  <%= hidden_field_tag :redirect_home, false %>
+  <% @assessment_question_responses.each do |response| %>
+    <%= fields_for "assessment_question_responses[]", response do |response_fields| %>
+      <%= response_fields.hidden_field :assessment_case_id,
+                                       value: response.assessment_case.id %>
+      <%= response_fields.hidden_field :assessment_question_id,
+                                       value: response.assessment_question.id %>
+
+      <div class="form-group">
+        <%= response_fields.label :assessment_answer_id, response.assessment_question.description %>
+        <%= response_fields.collection_select :assessment_answer_id,
+                                              response.assessment_question.assessment_answers_for_case(@case).order(position: :desc),
+                                              :id, :title, { include_blank: true },
+                                              class: "form-control" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= submit_tag "Save & Next", class: "btn btn-primary" %>
+  <%= submit_tag "Save & Exit", class: "btn btn-secondary", rel: :redirect_home %>
+<% end %>

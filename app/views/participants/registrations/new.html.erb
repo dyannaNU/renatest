@@ -1,0 +1,67 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= label_tag :access_token %><br />
+    <%= text_field_tag :access_token, nil, class: "form-control" %>
+    <p class="help-block">You need an access token to join.</p>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off",
+                         class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :affiliation %><br />
+    <%= f.text_field :affiliation, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :training_status_id do %>
+      Are you using EMC<sup>2</sup> to assess your proficiency as a:
+    <% end %>
+    <br />
+    <%= f.select :training_status_id,
+      TrainingStatus.all.collect { |ts| [ ts.title.capitalize, ts.id] },
+      { include_blank: true },
+      { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :timezone %><br />
+    <%= f.time_zone_select :timezone, nil, { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Sign up", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "participants/shared/links" %>
